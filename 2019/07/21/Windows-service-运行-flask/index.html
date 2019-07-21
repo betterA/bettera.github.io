@@ -94,16 +94,18 @@
   };
 </script>
 
-  <meta name="description" content="Ahkee Blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ahkee&#39;s Blog">
-<meta property="og:url" content="https://bettera.github.io/index.html">
+  <meta name="description" content="目前需要在windows构建一个小接口，使用cmd命令行运行服务有一点不方便，然后看网上有没有flask服务化的文章。 首先使用pywin32可以构建python service pip下载 pywin32 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051pip">
+<meta name="keywords" content="flask">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows service 运行 flask">
+<meta property="og:url" content="https://bettera.github.io/2019/07/21/Windows-service-运行-flask/index.html">
 <meta property="og:site_name" content="Ahkee&#39;s Blog">
-<meta property="og:description" content="Ahkee Blog">
+<meta property="og:description" content="目前需要在windows构建一个小接口，使用cmd命令行运行服务有一点不方便，然后看网上有没有flask服务化的文章。 首先使用pywin32可以构建python service pip下载 pywin32 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051pip">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-21T09:53:26.990Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ahkee&#39;s Blog">
-<meta name="twitter:description" content="Ahkee Blog">
+<meta name="twitter:title" content="Windows service 运行 flask">
+<meta name="twitter:description" content="目前需要在windows构建一个小接口，使用cmd命令行运行服务有一点不方便，然后看网上有没有flask服务化的文章。 首先使用pywin32可以构建python service pip下载 pywin32 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051pip">
 
 
 
@@ -111,7 +113,7 @@
 
   
   
-  <link rel="canonical" href="https://bettera.github.io/">
+  <link rel="canonical" href="https://bettera.github.io/2019/07/21/Windows-service-运行-flask/">
 
 
 
@@ -122,7 +124,7 @@
 </script>
 
   
-  <title>Ahkee's Blog</title>
+  <title>Windows service 运行 flask | Ahkee's Blog</title>
   
 
 
@@ -170,8 +172,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -213,7 +214,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -269,9 +270,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -303,10 +304,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/21/Windows-service-运行-flask/" class="post-title-link" itemprop="url">Windows service 运行 flask</a>
+          <h1 class="post-title" itemprop="name headline">Windows service 运行 flask
+
               
             
           </h1>
@@ -390,9 +389,7 @@
       
 
       
-        
-          
-            <p>目前需要在windows构建一个小接口，使用cmd命令行运行服务有一点不方便，然后看网上有没有flask服务化的文章。</p>
+        <p>目前需要在windows构建一个小接口，使用cmd命令行运行服务有一点不方便，然后看网上有没有flask服务化的文章。</p>
 <p><strong>首先使用pywin32可以构建python service</strong></p>
 <p>pip下载 pywin32</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">pip install pywin32 </span><br><span class="line"><span class="comment"># 注意事项： 不要在虚拟环境中安装，安装后会缺少某些包</span></span><br><span class="line">pip install flask==<span class="number">0.11</span>  <span class="comment"># flask 1.0的包未能成功使用Windows service</span></span><br><span class="line"></span><br><span class="line">基本代码win_flask.py</span><br><span class="line"><span class="keyword">import</span> win32serviceutil</span><br><span class="line"><span class="keyword">import</span> win32service</span><br><span class="line"><span class="keyword">import</span> win32event</span><br><span class="line"><span class="keyword">import</span> win32evtlogutil</span><br><span class="line"><span class="keyword">import</span> servicemanager</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">sys.path.append(os.path.dirname(__name__))</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> myapp <span class="keyword">import</span> app</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloFlaskSvc</span> <span class="params">(win32serviceutil.ServiceFramework)</span>:</span></span><br><span class="line">    _svc_name_ = <span class="string">"windows service Flask"</span> <span class="comment"># 服务名</span></span><br><span class="line">    _svc_display_name_ = <span class="string">"windows service Flask"</span> <span class="comment"># 描述</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, *args)</span>:</span></span><br><span class="line">        win32serviceutil.ServiceFramework.__init__(self, *args)</span><br><span class="line">        self.hWaitStop = win32event.CreateEvent(<span class="literal">None</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="literal">None</span>)</span><br><span class="line">        socket.setdefaulttimeout(<span class="number">5</span>)</span><br><span class="line">        self.stop_requested = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">SvcStop</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.ReportServiceStatus(win32service.SERVICE_STOP_PENDING)</span><br><span class="line">        win32event.SetEvent(self.hWaitStop)</span><br><span class="line">        self.ReportServiceStatus(win32service.SERVICE_STOPPED)</span><br><span class="line">        logging.info(<span class="string">'Stopped service ...'</span>)</span><br><span class="line">        self.stop_requested = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">SvcDoRun</span><span class="params">(self)</span>:</span></span><br><span class="line">        servicemanager.LogMsg(</span><br><span class="line">            servicemanager.EVENTLOG_INFORMATION_TYPE,</span><br><span class="line">            servicemanager.PYS_SERVICE_STARTED,</span><br><span class="line">            (self._svc_name_,<span class="string">''</span>)</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        self.main()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">(self)</span>:</span></span><br><span class="line">        app.run(host=<span class="string">"0.0.0.0"</span>, port=<span class="number">5000</span>)   <span class="comment"># 服务运行函数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    win32serviceutil.HandleCommandLine(HelloFlaskSvc)</span><br></pre></td></tr></table></figure>
@@ -405,13 +402,13 @@
 
 <p>打开网页便可以访问服务了</p>
 
-          
-        
       
     </div>
 
     
 
+    
+      
     
 
     
@@ -429,14 +426,23 @@
 
     <footer class="post-footer">
       
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/flask/" rel="tag"># flask</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -446,14 +452,15 @@
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -678,6 +685,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
 
   <script src="/js/next-boot.js?v=7.2.0"></script>
 
@@ -699,6 +710,8 @@
 
   
 
+
+  
 
 
   
